@@ -1,79 +1,66 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 int main()
 {
-    cout <<"Ahlan ya user ua habibi."<<endl;;
-    cout <<"What do you like to do today?"<<endl;
-    cout <<"1- Cipher a message"<<endl;
-    cout <<"2- Decipher a message "<<endl;
-    cout <<"3- End "<<endl;
-    int n ;
-    cout<<">>>";
-    cin >> n ;
-    if (n == 1 )
-    {
-        string name ;
-        cout <<"Please enter the message to cipher: " ;
-        cin.ignore();
-        getline(cin, name);
-        string arrayOfletter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        string cipher[] = {".- ","-... ","-.-. ","-.. ",". ","..-. ","--. ",".... ",".. ",".--- ","-.- ",".-.. ","-- ","-. ","--- ",".--. ","--.- ",".-. ","... ","- ","..- ","...- ",".-- ","-..- ","-.-- ","--.. ",".- ","-... ","-.-. ","-.. ",". ","..-. ","--. ",".... ",".. ",".--- ","-.- ",".-.. ","-- ","-. ","--- ",".--. ","--.- ",".-. ","... ","- ","..- ","...- ",".-- ","-..- ","-.-- ","--.. "};
-        for (int  i = 0 ; i < name.size() ; i++)
-        {
-            for (int j=0 ; j< 29; j++)
-            {
-                if (name[i] == arrayOfletter[j])
-                {
-                    cout << cipher[j];
-                }
-                if (name[i] == ' ')
-                {
-                    cout <<"   ";
-                    break;
-                }
+        char asc [28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    char des [28] = {'z','y','x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a'};
+    string word;
+    int x;
+    cout<<"if you want to code a massege press (1)"<<endl;
+    cout<<"if you want to code a massege press (2)"<<endl;
+    cin>>x;
+    while(x!=1 && x!=2){
+        cout<<"wrong number"<<endl;
+    cout<<"if you want to code a massege press (1)"<<endl;
+    cout<<"if you want to code a massege press (2)"<<endl;
+    cin>>x;
+    }
+    if (x==1){
+    cout<<"enter the word you want to codeit:";
+    cin.ignore();
+    getline(cin, word);
 
+
+        for(int j=0 ; j<=word.size() ; j++)
+        {
+            for(int i=0 ; i<=27 ; i++)
+            {
+                if(word[j]==' ')
+                {
+                    cout<<" ";
+                }
+                if(word[j]==asc[i])
+                {
+                    cout<<des[i];
+                }
             }
+
         }
     }
-    else if (n == 2)
+    if (x==2)
     {
-        string arrayOfletter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        string cipher[52] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
-        string decryption;
-        cin.ignore();
-        string name ;
-        cout <<"Enter your cipher (for example, ... --- ...  ... --- ...) :  "<<endl;
-        getline(cin,name);
-        string letter;
-        for(int i=0; i< name.size(); i++)
+            cout<<"enter the word you want to decode it:";
+            cin.ignore();
+            getline(cin, word);
+
+
+        for(int j=0 ; j<=word.size() ; j++)
         {
-            while (name[i]!=32)
+            for(int i=0 ; i<=27 ; i++)
             {
-
-                letter+=name[i];
-                i++;
-            }
-            for(int j=0 ; j<26; ++j)
-            {
-                if(letter == cipher[j])
+                if(word[j]==' ')
                 {
-                    decryption += arrayOfletter[j];
-                    letter="";
+                    cout<<" ";
                 }
-            }
-            if (name[i]==32)
-            {
-                if ((name[i+1]==32 && name[i+2] == 32)||(name[i+1]==32))
+                if(word[j]==des[i])
                 {
-                    decryption+=" ";
+                    cout<<asc[i];
                 }
+
             }
-
-
         }
-        cout<<decryption;
     }
     return 0;
 }
